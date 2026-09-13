@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>12 MLN — O'yinlar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; -webkit-tap-highlight-color:transparent; }
+
+:root {
+  --gold: #f7c948;
+  --gold-2: #e0a800;
+  --card: rgba(24, 29, 48, 0.9);
+  --border: rgba(247, 201, 72, 0.18);
+  --text: #eef2ff;
+  --text-dim: #8a93b8;
+  --green: #22c55e;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+}
+
+body {
+  background: radial-gradient(ellipse at top, #1a1f3a 0%, #0a0d1a 60%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  color: var(--text);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(247,201,72,0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139,92,246,0.08) 0%, transparent 40%);
+  animation: bgMove 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes bgMove {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-5%, -5%); }
+}
+
+.container {
+  width: 100%;
+  max-width: 440px;
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  padding: 26px 22px;
+  border-radius: 32px;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(247,201,72,0.06) inset;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ TOP HEADER ============ */
+.top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.top-title {
+  font-size: 20px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.top-title .sub {
+  display: block;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  -webkit-text-fill-color: var(--text-dim);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* ============ MENU (3 dots) ============ */
+.menu-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(10,13,26,0.7);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: 0.2s;
+  padding: 0;
+}
+.menu-btn .dot {
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: block;
+  transition: 0.2s;
+}
+.menu-btn:hover, .menu-btn.active {
+  background: rgba(247,201,72,0.15);
+  border-color: var(--gold);
+}
+.menu-btn:hover .dot, .menu-btn.active .dot {
+  background: #fff;
+  box-shadow: 0 0 8px var(--gold);
+}
+.menu-btn:active { transform: scale(0.94); }
+
+.menu-dropdown {
+  position: absolute;
+  top: 54px;
+  right: 0;
+  background: linear-gradient(180deg, #1c2238, #14192b);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 8px;
+  min-width: 220px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(247,201,72,0.1);
+  z-index: 100;
+  animation: fadeUp 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-dropdown button {
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter',sans-serif;
+}
+.menu-dropdown button:hover {
+  background: rgba(247,201,72,0.1);
+  color: var(--gold);
+}
+.menu-dropdown button.promo:hover {
+  background: rgba(139,92,246,0.15);
+  color: #a78bfa;
+}
+.menu-dropdown button.red {
+  color: #f87171;
+}
+.menu-dropdown button.red:hover {
+  background: rgba(239,68,68,0.15);
+  color: #f87171;
+}
+.menu-dropdown .sep {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin: 4px 6px;
+}
+.menu-dropdown .ico {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+/* ============ BALANCE ============ */
+.balance-card {
+  background: linear-gradient(135deg, rgba(247,201,72,0.12), rgba(139,92,246,0.08));
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 16px 22px;
+  margin: 0 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.balance-card .lbl {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.balance-card .amt {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--green);
+}
+.balance-card .coin { font-size: 36px; }
+
+.brand { text-align: center; margin-bottom: 22px; position: relative; }
+
+.brand h1 {
+  font-weight: 900;
+  font-size: 34px;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #fff 0%, var(--gold) 40%, var(--gold-2) 70%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine { to { background-position: 200% center; } }
+
+.brand .sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.brand .badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  color: #0a0d1a;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.form-box { display: flex; flex-direction: column; gap: 12px; }
+
+.input-group { position: relative; }
+
+.input-group .icon {
+  position: absolute;
+  left: 16px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.form-box input, .form-box select {
+  width: 100%;
+  padding: 15px 18px 15px 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(10, 13, 26, 0.7);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: 0.25s;
+}
+
+.form-box input::placeholder { color: #5a6488; }
+
+.form-box input:focus, .form-box select:focus {
+  border-color: var(--gold);
+  background: rgba(10, 13, 26, 0.95);
+  box-shadow: 0 0 0 4px rgba(247,201,72,0.12);
+}
+
+.btn {
+  padding: 15px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-2) 100%);
+  color: #0a0d1a;
+  box-shadow: 0 8px 24px rgba(247,201,72,0.35);
+}
+
+.btn-green {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(34,197,94,0.35);
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(239,68,68,0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.btn-orange {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(245,158,11,0.35);
+}
+
+.btn-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(139,92,246,0.35);
+}
+
+.btn-block { width: 100%; }
+
+.btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.tabs {
+  display: flex;
+  background: rgba(10,13,26,0.7);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.tabs button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.tabs button.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  color: #0a0d1a;
+}
+
+.hidden { display: none !important; }
+
+.game-tabs {
+  display: flex;
+  background: rgba(10,13,26,0.7);
+  border-radius: 16px;
+  padding: 5px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255,255,255,0.05);
+  gap: 5px;
+}
+.game-tabs button {
+  flex: 1;
+  padding: 13px 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.game-tabs button.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  color: #0a0d1a;
+  box-shadow: 0 6px 18px rgba(247,201,72,0.35);
+}
+.game-tabs button.crash.active {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(239,68,68,0.45);
+}
+
+.spin-area { text-align: center; margin: 8px 0 6px; }
+
+.wheel-wrap {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  margin: 0 auto 22px;
+}
+
+.wheel-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ef4444 0deg 51.4deg,
+    #f7c948 51.4deg 102.8deg,
+    #22c55e 102.8deg 154.2deg,
+    #8b5cf6 154.2deg 205.7deg,
+    #3b82f6 205.7deg 257.1deg,
+    #f59e0b 257.1deg 308.5deg,
+    #ec4899 308.5deg 360deg
+  );
+  box-shadow: 0 0 40px rgba(247,201,72,0.4), 0 0 0 8px #1a1f3a, 0 0 0 12px rgba(247,201,72,0.15);
+  transition: transform 3.5s cubic-bezier(0.15, 0.9, 0.25, 1);
+  overflow: hidden;
+}
+
+.wheel-ring .seg {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0; height: 0;
+  transform-origin: 0 0;
+}
+.wheel-ring .seg span {
+  position: absolute;
+  left: -70px; top: -95px;
+  width: 140px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
+  letter-spacing: 0.3px;
+}
+
+.wheel-inner {
+  position: absolute;
+  inset: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #2a3155, #0f1428);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 8px 30px rgba(0,0,0,0.7);
+  border: 2px solid rgba(247,201,72,0.3);
+  z-index: 3;
+}
+
+.wheel-inner .label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wheel-inner .value {
+  font-size: 24px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 2px;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -18px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--gold);
+  filter: drop-shadow(0 4px 8px rgba(247,201,72,0.6));
+  z-index: 5;
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  box-shadow: 0 0 0 4px #0a0d1a, 0 0 20px rgba(247,201,72,0.6);
+  z-index: 4;
+}
+
+.spin-limit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.spin-limit .lbl {
+  color: var(--text-dim);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.spin-limit .cnt {
+  font-weight: 800;
+  color: var(--gold);
+  font-size: 15px;
+}
+.spin-limit .cnt.zero { color: var(--red); }
+.spin-limit .cnt.good { color: var(--green); }
+
+.timer-box {
+  background: rgba(239,68,68,0.1);
+  border: 1px dashed rgba(239,68,68,0.4);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #f87171;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.timer-box .t {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fbbf24;
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 4px;
+}
+
+.crash-screen {
+  background: linear-gradient(180deg, rgba(10,13,26,0.9), rgba(10,13,26,0.6));
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 22px;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.crash-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 100%, rgba(239,68,68,0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.crash-multiplier {
+  font-size: 64px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -2px;
+  line-height: 1;
+  transition: 0.1s;
+  position: relative;
+  z-index: 2;
+}
+
+.crash-multiplier.crashed {
+  background: linear-gradient(135deg, #ef4444, #7f1d1d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.crash-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.crash-status {
+  font-size: 14px;
+  margin-top: 12px;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+}
+.crash-status.win { color: var(--green); }
+.crash-status.lose { color: var(--red); }
+.crash-status.wait { color: var(--text-dim); }
+
+.crash-line {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ef4444, #fbbf24);
+  box-shadow: 0 0 20px rgba(239,68,68,0.8);
+  transition: width 0.15s linear;
+  width: 0;
+  z-index: 1;
+}
+
+.crash-rocket {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 32px;
+  transition: all 0.15s linear;
+  z-index: 3;
+  filter: drop-shadow(0 0 10px rgba(251,191,36,0.8));
+}
+
+.crash-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.quick-bet {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.quick-bet button {
+  padding: 10px 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(10,13,26,0.7);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.quick-bet button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(247,201,72,0.08);
+}
+
+.crash-history {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 2px;
+  margin-bottom: 10px;
+}
+.crash-history::-webkit-scrollbar { height: 3px; }
+.crash-history::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+.crash-history .chip {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.crash-history .chip.low { color: #f87171; border-color: rgba(239,68,68,0.4); }
+.crash-history .chip.mid { color: #fbbf24; border-color: rgba(245,158,11,0.4); }
+.crash-history .chip.high { color: #4ade80; border-color: rgba(34,197,94,0.4); }
+
+.panel {
+  background: rgba(10,13,26,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 22px;
+  padding: 20px;
+  margin-top: 14px;
+}
+
+.panel h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+}
+
+.history-box {
+  max-height: 160px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.3);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin: 10px 0 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.history-box::-webkit-scrollbar { width: 4px; }
+.history-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+.history-item {
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #cdd5f0;
+}
+.history-item:last-child { border-bottom: none; }
+.history-item .h-amt { color: var(--green); font-weight: 700; }
+.history-item .h-amt.loss { color: var(--red); }
+
+.toast {
+  padding: 12px 16px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.toast.success { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.4); }
+.toast.error { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
+.toast.info { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.4); }
+.toast.warn { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
+
+.rule-box {
+  background: rgba(247,201,72,0.06);
+  border: 1px dashed rgba(247,201,72,0.3);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: #c9b878;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.rule-box b { color: var(--gold); }
+.rule-box.red {
+  background: rgba(239,68,68,0.06);
+  border-color: rgba(239,68,68,0.3);
+  color: #f0a5a5;
+}
+.rule-box.purple {
+  background: rgba(139,92,246,0.08);
+  border-color: rgba(139,92,246,0.35);
+  color: #c4b5fd;
+}
+.rule-box.purple b { color: #a78bfa; }
+
+.copy-card {
+  background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(247,201,72,0.06));
+  border: 1.5px solid rgba(34,197,94,0.4);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.copy-card .cc-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.copy-card .cc-num {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+  font-family: 'Courier New', monospace;
+}
+.copy-card .cc-name {
+  font-size: 12.5px;
+  color: #4ade80;
+  font-weight: 700;
+}
+.copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 800;
+  font-size: 11px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+}
+.copy-btn:active { transform: scale(0.92); }
+.copy-btn.copied {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.lock-box {
+  background: linear-gradient(135deg, rgba(239,68,68,0.12), rgba(247,201,72,0.06));
+  border: 1.5px solid rgba(239,68,68,0.45);
+  border-radius: 20px;
+  padding: 22px 18px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.lock-box .ico {
+  font-size: 46px;
+  display: block;
+  margin-bottom: 10px;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.lock-box .t1 {
+  font-size: 17px;
+  font-weight: 900;
+  color: #f87171;
+  margin-bottom: 8px;
+}
+.lock-box .t2 {
+  font-size: 13px;
+  color: #c9b878;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.lock-box .t2 b { color: var(--gold); }
+
+.progress-box {
+  background: rgba(0,0,0,0.35);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.progress-box .pr-lbl {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  margin-bottom: 6px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.progress-box .pr-lbl b { color: var(--gold); }
+.progress-bar {
+  height: 8px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar .pr-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ef4444, #fbbf24, #22c55e);
+  border-radius: 10px;
+  transition: width 0.4s;
+  width: 0%;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.card-row input {
+  padding: 12px 6px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(247,201,72,0.3), transparent);
+  margin: 14px 0;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0;
+}
+.stat {
+  background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+  padding: 10px 6px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.stat .v { font-size: 15px; font-weight: 800; color: var(--gold); }
+.stat .k { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+
+.file-upload {
+  background: rgba(10,13,26,0.7);
+  border: 2px dashed rgba(247,201,72,0.4);
+  border-radius: 16px;
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+}
+.file-upload:hover {
+  border-color: var(--gold);
+  background: rgba(247,201,72,0.05);
+  color: var(--gold);
+}
+.file-upload .big { font-size: 26px; display: block; margin-bottom: 4px; }
+
+.file-preview {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--green);
+  text-align: center;
+  font-weight: 600;
+}
+
+.wait-box {
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(247,201,72,0.08));
+  border: 1.5px solid rgba(245,158,11,0.5);
+  border-radius: 18px;
+  padding: 20px 16px;
+  text-align: center;
+  margin-top: 14px;
+  animation: pulse2 2s ease-in-out infinite;
+}
+@keyframes pulse2 {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(245,158,11,0); }
+}
+.wait-box .ico { font-size: 38px; display: block; margin-bottom: 8px; }
+.wait-box .t1 { font-size: 16px; font-weight: 800; color: #fbbf24; margin-bottom: 8px; }
+.wait-box .timer-big {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  margin: 8px 0;
+  text-shadow: 0 0 20px rgba(251,191,36,0.6);
+}
+.wait-box .t2 { font-size: 12px; color: #c9b878; line-height: 1.5; }
+
+/* PROMO STYLES */
+.promo-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.promo-input-row input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(139,92,246,0.3);
+  background: rgba(139,92,246,0.06);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+.promo-input-row input::placeholder { color: #7c6bb0; }
+.promo-input-row input:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 4px rgba(139,92,246,0.15);
+}
+.promo-input-row button {
+  padding: 14px 22px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 8px 24px rgba(139,92,246,0.4);
+}
+.promo-input-row button:active { transform: scale(0.95); }
+
+@media (max-width: 400px) {
+  .brand h1 { font-size: 28px; }
+  .wheel-wrap { width: 200px; height: 200px; }
+  .wheel-inner .value { font-size: 20px; }
+  .wheel-ring .seg span { font-size: 10.5px; left: -60px; top: -85px; width: 120px; }
+  .crash-multiplier { font-size: 52px; }
+  .copy-card .cc-num { font-size: 15px; }
+  .wait-box .timer-big { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+
+  <!-- ============ AUTH PAGE ============ -->
+  <div id="authPage">
+    <div class="brand">
+      <h1>12 MLN</h1>
+      <div class="sub">SUPER O'YINLAR</div>
+      <div class="badge">💰 100 MLN GACHA YUTUQ</div>
+    </div>
+
+    <div class="tabs">
+      <button id="tabLogin" class="active" type="button">Kirish</button>
+      <button id="tabRegister" type="button">Ro'yxatdan o'tish</button>
+    </div>
+
+    <div id="loginForm" class="form-box">
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input type="text" id="loginUser" placeholder="Login" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" id="loginPass" placeholder="Parol" />
+      </div>
+      <button class="btn btn-gold btn-block" id="loginBtn" type="button">➡️ KIRISH</button>
+    </div>
+
+    <div id="registerForm" class="form-box hidden">
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input type="text" id="regUser" placeholder="Yangi login" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" id="regPass" placeholder="Yangi parol (min 4 belgi)" />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" id="regPass2" placeholder="Parolni takrorlang" />
+      </div>
+      <button class="btn btn-green btn-block" id="registerBtn" type="button">✅ RO'YXATDAN O'TISH</button>
+    </div>
+
+    <div class="footer">
+      📲 Telegram: <a href="https://t.me/vrxszd" target="_blank">@vrxszd</a>
+    </div>
+  </div>
+
+  <!-- ============ MAIN APP ============ -->
+  <div id="mainPage" class="hidden">
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+      <div class="top-title">
+        12 MLN
+        <span class="sub">SUPER O'YINLAR</span>
+      </div>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menyu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </button>
+
+      <div class="menu-dropdown hidden" id="menuDropdown">
+        <button type="button" id="menuCabinet"><span class="ico">📂</span> Kabinet</button>
+        <button type="button" class="promo" id="menuPromo"><span class="ico">🎁</span> Promo kod</button>
+        <button type="button" id="menuWithdraw"><span class="ico">💸</span> Pul yechish</button>
+        <button type="button" id="menuPay"><span class="ico">💳</span> Hisob to'ldirish</button>
+        <div class="sep"></div>
+        <button type="button" class="red" id="menuLogout"><span class="ico">🚪</span> Chiqish</button>
+      </div>
+    </div>
+
+    <!-- BALANCE -->
+    <div class="balance-card" style="margin-top:0;">
+      <div>
+        <div class="lbl">💰 Balans</div>
+        <div class="amt" id="balanceDisplay">0</div>
+      </div>
+      <div class="coin">🪙</div>
+    </div>
+
+    <!-- GAME TABS -->
+    <div class="game-tabs">
+      <button id="gameTabWheel" class="active" type="button">🎰 BARABAN</button>
+      <button id="gameTabCrash" class="crash" type="button">💥 CRASH</button>
+    </div>
+
+    <!-- ============ BARABAN GAME ============ -->
+    <div id="wheelGame">
+      <div class="spin-limit">
+        <div class="lbl">🎰 Bugungi urinishlar</div>
+        <div><span class="cnt" id="spinCount">2 / 2</span></div>
+      </div>
+
+      <div class="timer-box hidden" id="timerBox">
+        ⏳ Keyingi aylantirishgacha:
+        <span class="t" id="timerText">--:--:--</span>
+      </div>
+
+      <div class="spin-area">
+        <div class="wheel-wrap">
+          <div class="wheel-pointer"></div>
+          <div class="wheel-ring" id="wheelRing">
+            <div class="seg" style="transform: rotate(25.7deg);"><span>300K</span></div>
+            <div class="seg" style="transform: rotate(77.1deg);"><span>12 MLN</span></div>
+            <div class="seg" style="transform: rotate(128.5deg);"><span>5 MLN</span></div>
+            <div class="seg" style="transform: rotate(180deg);"><span>100 MLN</span></div>
+            <div class="seg" style="transform: rotate(231.4deg);"><span>20 MLN</span></div>
+            <div class="seg" style="transform: rotate(282.8deg);"><span>300K</span></div>
+            <div class="seg" style="transform: rotate(334.2deg);"><span>12 MLN</span></div>
+          </div>
+          <div class="wheel-center"></div>
+          <div class="wheel-inner">
+            <div class="label">YUTUQ</div>
+            <div class="value" id="wheelValue">🎲</div>
+          </div>
+        </div>
+        <button class="btn btn-gold btn-block" id="spinBtn" type="button">🎰 AYLANTIRISH</button>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><div class="v" id="statSpins">0</div><div class="k">AYLANTIRISH</div></div>
+        <div class="stat"><div class="v" id="statWins">0</div><div class="k">YUTUQLAR</div></div>
+        <div class="stat"><div class="v" id="statMax">0</div><div class="k">MAX YUTUQ</div></div>
+      </div>
+    </div>
+
+    <!-- ============ CRASH GAME ============ -->
+    <div id="crashGame" class="hidden">
+      <div class="rule-box red">
+        💥 <b>CRASH O'YINI</b><br>
+        • Minimal stavka: <b>300 000 so'm</b><br>
+        • Multiplikator <b>1.00x</b> dan boshlanadi va oshib boradi<br>
+        • <b>CRASH</b> bo'lishidan oldin "OLISH" tugmasini bosing<br>
+        • Yutganingiz: <b>stavka × multiplikator</b><br>
+        • Yutqazsangiz: <b>stavka yo'qoladi</b>
+      </div>
+
+      <div class="crash-history" id="crashHistory">
+        <span style="opacity:0.4;font-size:12px;">Tarix bo'sh</span>
+      </div>
+
+      <div class="crash-screen">
+        <div class="crash-line" id="crashLine"></div>
+        <div class="crash-rocket" id="crashRocket">🚀</div>
+        <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
+        <div class="crash-label">MULTIPLIKATOR</div>
+        <div class="crash-status wait" id="crashStatus">Stavka kiriting va boshlang</div>
+      </div>
+
+      <div class="crash-input-area">
+        <div class="input-group">
+          <span class="icon">💵</span>
+          <input type="number" id="crashBet" placeholder="Stavka (min 300 000)" value="300000" />
+        </div>
+        <div class="quick-bet">
+          <button type="button" data-amt="300000">300K</button>
+          <button type="button" data-amt="500000">500K</button>
+          <button type="button" data-amt="1000000">1 MLN</button>
+          <button type="button" data-amt="5000000">5 MLN</button>
+        </div>
+        <button class="btn btn-green btn-block" id="crashStartBtn" type="button">🚀 BOSHLASH</button>
+        <button class="btn btn-orange btn-block hidden" id="crashCashoutBtn" type="button">💰 OLISH</button>
+      </div>
+
+      <div id="crashResult" class="toast hidden"></div>
+    </div>
+
+    <!-- ============ CABINET PANEL ============ -->
+    <div id="cabinetPanel" class="panel hidden">
+      <h3>📂 Pul Kabineti</h3>
+      <div class="balance-card" style="margin-top:0;">
+        <div>
+          <div class="lbl">Jami balans</div>
+          <div class="amt" id="cabinetBalance">0</div>
+        </div>
+        <div class="coin">🪙</div>
+      </div>
+
+      <div class="divider"></div>
+      <div style="font-size:12px;color:var(--text-dim);letter-spacing:1px;font-weight:700;margin-bottom:6px;">📜 TARIX</div>
+      <div class="history-box" id="historyList">
+        <em style="opacity:0.4;">Hali o'yin yo'q</em>
+      </div>
+      <button class="btn btn-outline btn-block" id="closeCabinetBtn" type="button">🔙 YOPISH</button>
+    </div>
+
+    <!-- ============ PROMO PANEL ============ -->
+    <div id="promoPanel" class="panel hidden">
+      <h3>🎁 Promo Kod</h3>
+
+      <div class="rule-box purple">
+        🎁 Promo kodni kiriting va bonus oling!<br>
+        <b>Har bir kod faqat 1 marta ishlatiladi.</b>
+      </div>
+
+      <div class="promo-input-row">
+        <input type="text" id="promoInput" placeholder="Promo kod kiriting..." autocomplete="off" />
+        <button id="promoBtn" type="button">🎁 OLISH</button>
+      </div>
+
+      <div id="promoResult" class="toast hidden"></div>
+
+      <button class="btn btn-outline btn-block" id="closePromoBtn" type="button" style="margin-top:14px;">🔙 YOPISH</button>
+    </div>
+
+    <!-- ============ WITHDRAW PANEL ============ -->
+    <div id="withdrawPanel" class="panel hidden">
+      <h3>💸 Pul Yechish</h3>
+
+      <div id="withdrawLock">
+        <div class="lock-box">
+          <span class="ico">🔒</span>
+          <div class="t1">Pul yechish qulflangan!</div>
+          <div class="t2">
+            Pul yechish uchun avval <b>150 000 so'm</b> miqdorida hisob to'ldirishingiz kerak.
+          </div>
+        </div>
+
+        <div class="progress-box">
+          <div class="pr-lbl">
+            <span>To'lov jarayoni</span>
+            <b><span id="paidAmount">0</span> / 150 000</b>
+          </div>
+          <div class="progress-bar">
+            <div class="pr-fill" id="paidProgress"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-green btn-block" id="gotoPayBtn" type="button">💳 HISOB TO'LDIRISHGA O'TISH</button>
+        <button class="btn btn-outline btn-block" id="closeWithdrawBtn" type="button" style="margin-top:8px;">🔙 ORQAGA</button>
+        <div id="withdrawResult" class="toast hidden"></div>
+      </div>
+
+      <div id="withdrawOpen" class="hidden">
+        <div class="rule-box">
+          ✅ <b>Pul yechish ochildi!</b><br>
+          ⚠️ Minimal yechish: <b>150 000 so'm</b><br>
+          To'lov kartasi: <b>9860 1466 4902 7795 (Akmal G)</b>
+        </div>
+        <div class="form-box">
+          <div class="input-group">
+            <span class="icon">👤</span>
+            <input type="text" id="wCardName" placeholder="Karta egasi" value="Akmal G" />
+          </div>
+          <div class="input-group">
+            <span class="icon">💳</span>
+            <input type="text" id="wCardNum" placeholder="Karta raqami" value="9860 1466 4902 7795" maxlength="19" />
+          </div>
+          <div class="input-group">
+            <span class="icon">💵</span>
+            <input type="number" id="wAmount" placeholder="Summa (min 150 000)" value="150000" />
+          </div>
+          <div class="input-group">
+            <span class="icon">⏱</span>
+            <input type="text" id="wPeriod" placeholder="Muddat (mas: 1 kun)" value="1 kun" />
+          </div>
+          <button class="btn btn-green btn-block" id="withdrawBtn" type="button">✅ YECHISH</button>
+          <button class="btn btn-outline btn-block" id="closeWithdrawBtn2" type="button">🔙 ORQAGA</button>
+        </div>
+        <div id="withdrawResult2" class="toast hidden"></div>
+      </div>
+    </div>
+
+    <!-- ============ PAY PANEL ============ -->
+    <div id="payPanel" class="panel hidden">
+      <h3>💳 Hisob To'ldirish</h3>
+
+      <div id="payFormWrap">
+        <div class="rule-box">
+          ℹ️ Quyidagi kartaga to'lov qiling.<br>
+          ⚠️ <b>Minimal summa: 150 000 so'm</b><br>
+          💡 To'lovdan so'ng pul yechish ochiladi.
+        </div>
+
+        <div class="copy-card">
+          <button class="copy-btn" id="copyCardBtn" type="button">📋 Copy</button>
+          <div class="cc-label">To'lov kartasi</div>
+          <div class="cc-num" id="cardNumberText">9860 1466 4902 7795</div>
+          <div class="cc-name">Akmal G</div>
+        </div>
+
+        <div class="form-box">
+          <div class="input-group">
+            <span class="icon">💵</span>
+            <input type="number" id="paySum" placeholder="To'lov summasi (min 150 000)" />
+          </div>
+
+          <div class="file-upload" id="fileUploadBox">
+            <span class="big">📎</span>
+            Chek yuklash uchun bosing
+            <input type="file" id="checkFile" accept="image/*" style="display:none;" />
+          </div>
+          <div class="file-preview hidden" id="filePreview"></div>
+
+          <button class="btn btn-gold btn-block" id="paySubmitBtn" type="button">✅ TO'LADIM</button>
+          <button class="btn btn-outline btn-block" id="closePayBtn" type="button">🔙 ORQAGA</button>
+        </div>
+        <div id="payResult" class="toast hidden"></div>
+      </div>
+
+      <div id="waitWrap" class="hidden">
+        <div class="wait-box">
+          <span class="ico">⏳</span>
+          <div class="t1">To'lov tekshirilmoqda</div>
+          <div class="timer-big" id="waitTimer">30:00</div>
+          <div class="t2">
+            Iltimos, kuting. <b>30 daqiqa</b> ichida to'lovingiz admin tomonidan tekshiriladi.<br>
+            Shundan so'ng hisobingiz to'ldiriladi.
+          </div>
+        </div>
+        <button class="btn btn-outline btn-block" id="closePayBtn2" type="button" style="margin-top:12px;">🔙 ORQAGA</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      📲 Telegram: <a href="https://t.me/vrxszd" target="_blank">@vrxszd</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var USERS_KEY = 'mln12_users';
+  var SESSION_KEY = 'mln12_session';
+  var DAILY_LIMIT = 2;
+  var CRASH_MIN_BET = 300000;
+  var PAY_THRESHOLD = 150000;
+  var WAIT_MINUTES = 30;
+
+  var PROMO_CODES = {
+    'bonus12':  { amount: 12000000,  label: '12 MLN' },
+    'bonus100': { amount: 100000000, label: '100 MLN' },
+    '129mln':   { amount: 129000000, label: '129 MLN' },
+    '67mln':    { amount: 1000000,   label: '1 MLN' }
+  };
+
+  var CARD_NUMBER = '9860 1466 4902 7795';
+  var CARD_NAME = 'Akmal G';
+
+  function loadUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function setSession(user) { localStorage.setItem(SESSION_KEY, user); }
+  function getSession() { return localStorage.getItem(SESSION_KEY); }
+  function clearSession() { localStorage.removeItem(SESSION_KEY); }
+
+  var currentUser = null;
+  var balance = 0;
+  var history = [];
+  var spins = 0, wins = 0, maxWin = 0;
+  var spinCount = 0;
+  var lastSpinDate = '';
+  var totalPaid = 0;
+  var isWithdrawUnlocked = false;
+  var usedPromos = {};
+  var waitUntil = 0;
+
+  function $(id) { return document.getElementById(id); }
+
+  var authPage = $('authPage');
+  var mainPage = $('mainPage');
+  var tabLogin = $('tabLogin');
+  var tabRegister = $('tabRegister');
+  var loginForm = $('loginForm');
+  var registerForm = $('registerForm');
+
+  var wheelRing = $('wheelRing');
+  var wheelValue = $('wheelValue');
+  var spinBtn = $('spinBtn');
+  var balanceDisplay = $('balanceDisplay');
+  var statSpins = $('statSpins');
+  var statWins = $('statWins');
+  var statMax = $('statMax');
+
+  var spinCountEl = $('spinCount');
+  var timerBox = $('timerBox');
+  var timerText = $('timerText');
+
+  var cabinetPanel = $('cabinetPanel');
+  var promoPanel = $('promoPanel');
+  var cabinetBalance = $('cabinetBalance');
+  var historyList = $('historyList');
+  var withdrawPanel = $('withdrawPanel');
+  var payPanel = $('payPanel');
+  var withdrawResult = $('withdrawResult');
+  var withdrawResult2 = $('withdrawResult2');
+  var payResult = $('payResult');
+
+  var withdrawLock = $('withdrawLock');
+  var withdrawOpen = $('withdrawOpen');
+  var paidAmountEl = $('paidAmount');
+  var paidProgress = $('paidProgress');
+
+  var promoInput = $('promoInput');
+  var promoBtn = $('promoBtn');
+  var promoResult = $('promoResult');
+
+  var menuBtn = $('menuBtn');
+  var menuDropdown = $('menuDropdown');
+
+  var payFormWrap = $('payFormWrap');
+  var waitWrap = $('waitWrap');
+  var waitTimerEl = $('waitTimer');
+
+  function fmt(n) { return Number(n || 0).toLocaleString('uz-UZ'); }
+
+  function todayStr() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  function hideAllPanels() {
+    cabinetPanel.classList.add('hidden');
+    promoPanel.classList.add('hidden');
+    withdrawPanel.classList.add('hidden');
+    payPanel.classList.add('hidden');
+    withdrawResult.classList.add('hidden');
+    withdrawResult2.classList.add('hidden');
+    payResult.classList.add('hidden');
+    promoResult.classList.add('hidden');
+    payFormWrap.classList.remove('hidden');
+    waitWrap.classList.add('hidden');
+  }
+
+  function updateUI() {
+    balanceDisplay.textContent = fmt(balance);
+    cabinetBalance.textContent = fmt(balance);
+    statSpins.textContent = spins;
+    statWins.textContent = wins;
+    statMax.textContent = fmt(maxWin);
+    updateSpinLimitUI();
+    updateWithdrawLockUI();
+  }
+
+  // ============ MENU ============
+  menuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    menuDropdown.classList.toggle('hidden');
+    menuBtn.classList.toggle('active');
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!menuDropdown.contains(e.target) && !menuBtn.contains(e.target)) {
+      menuDropdown.classList.add('hidden');
+      menuBtn.classList.remove('active');
+    }
+  });
+
+  function closeMenu() {
+    menuDropdown.classList.add('hidden');
+    menuBtn.classList.remove('active');
+  }
+
+  // ============ PROMO ============
+  promoBtn.addEventListener('click', function () {
+    var code = promoInput.value.trim().toLowerCase();
+    if (!code) {
+      toast(promoResult, '❌ Promo kodni kiriting!', 'error');
+      return;
+    }
+    if (!PROMO_CODES[code]) {
+      toast(promoResult, '❌ Bunday promo kod mavjud emas!', 'error');
+      return;
+    }
+    if (usedPromos[code]) {
+      toast(promoResult, '⚠️ Bu promo kodni allaqachon ishlatgansiz!', 'warn');
+      return;
+    }
+    var promo = PROMO_CODES[code];
+    usedPromos[code] = true;
+    balance += promo.amount;
+    addHistory('promo', promo.amount, code);
+    updateUI();
+    saveUserData();
+    toast(promoResult, '🎉 Tabriklaymiz!<br>Bonus: <b>+' + fmt(promo.amount) + ' so\'m</b><br>Balansingizga qo\'shildi!', 'success');
+    promoInput.value = '';
+  });
+
+  promoInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') promoBtn.click();
+  });
+
+  // ============ WITHDRAW LOCK ============
+  function updateWithdrawLockUI() {
+    isWithdrawUnlocked = totalPaid >= PAY_THRESHOLD;
+    paidAmountEl.textContent = fmt(totalPaid);
+    var pct = Math.min((totalPaid / PAY_THRESHOLD) * 100, 100);
+    paidProgress.style.width = pct + '%';
+    if (isWithdrawUnlocked) {
+      withdrawLock.classList.add('hidden');
+      withdrawOpen.classList.remove('hidden');
+    } else {
+      withdrawLock.classList.remove('hidden');
+      withdrawOpen.classList.add('hidden');
+    }
+  }
+
+  // ============ SPIN LIMIT ============
+  function checkDailyReset() {
+    var t = todayStr();
+    if (lastSpinDate !== t) {
+      spinCount = 0;
+      lastSpinDate = t;
+      saveUserData();
+    }
+  }
+
+  function updateSpinLimitUI() {
+    var remaining = DAILY_LIMIT - spinCount;
+    if (remaining < 0) remaining = 0;
+    spinCountEl.textContent = remaining + ' / ' + DAILY_LIMIT;
+    spinCountEl.classList.remove('zero', 'good');
+    if (remaining === 0) spinCountEl.classList.add('zero');
+    else if (remaining === DAILY_LIMIT) spinCountEl.classList.add('good');
+
+    if (remaining <= 0) {
+      spinBtn.disabled = true;
+      spinBtn.style.opacity = '0.5';
+      spinBtn.textContent = '⛔ LIMIT TUGADI';
+      timerBox.classList.remove('hidden');
+      startTimer();
+    } else {
+      spinBtn.disabled = false;
+      spinBtn.style.opacity = '1';
+      spinBtn.textContent = '🎰 AYLANTIRISH' + (remaining < DAILY_LIMIT ? ' (' + remaining + ' ta qoldi)' : '');
+      timerBox.classList.add('hidden');
+      stopTimer();
+    }
+  }
+
+  var timerInterval = null;
+  function startTimer() {
+    if (timerInterval) return;
+    updateTimer();
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+  function stopTimer() {
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  }
+  function updateTimer() {
+    var now = new Date();
+    var tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    var diff = tomorrow - now;
+    if (diff <= 0) { checkDailyReset(); updateSpinLimitUI(); return; }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    timerText.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+
+  // ============ HISTORY ============
+  function addHistory(type, amount, extra) {
+    history.unshift({ type: type, amount: amount, extra: extra, time: new Date().toLocaleString('uz-UZ') });
+    if (history.length > 40) history.pop();
+    renderHistory();
+  }
+
+  function renderHistory() {
+    if (!history.length) {
+      historyList.innerHTML = '<em style="opacity:0.4;">Hali o\'yin yo\'q</em>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < history.length; i++) {
+      var h = history[i];
+      var cls = (h.type === 'win' || h.type === 'crash-win' || h.type === 'promo') ? 'h-amt' : 'h-amt loss';
+      var sign = (h.type === 'win' || h.type === 'crash-win' || h.type === 'promo') ? '+' : '−';
+      var label = '🎯 Yutuq';
+      if (h.type === 'withdraw') label = '💸 Yechish';
+      else if (h.type === 'pay') label = '💳 Hisob to\'ldirish';
+      else if (h.type === 'crash-win') label = '💥 Crash yutuq';
+      else if (h.type === 'crash-lose') label = '💥 Crash yutqazish';
+      else if (h.type === 'promo') label = '🎁 Promo bonus';
+
+      html += '<div class="history-item">' +
+        '<div>' +
+          '<div style="font-weight:600;">' + label + '</div>' +
+          '<div style="font-size:11px;opacity:0.55;">' + h.time + (h.extra ? ' • ' + h.extra : '') + '</div>' +
+        '</div>' +
+        '<div class="' + cls + '">' + sign + fmt(h.amount) + '</div>' +
+      '</div>';
+    }
+    historyList.innerHTML = html;
+  }
+
+  function toast(el, msg, type) {
+    type = type || 'success';
+    el.innerHTML = msg;
+    el.className = 'toast ' + type;
+    el.classList.remove('hidden');
+  }
+
+  function saveUserData() {
+    if (!currentUser) return;
+    var users = loadUsers();
+    if (!users[currentUser]) return;
+    users[currentUser].balance = balance;
+    users[currentUser].history = history;
+    users[currentUser].spins = spins;
+    users[currentUser].wins = wins;
+    users[currentUser].maxWin = maxWin;
+    users[currentUser].spinCount = spinCount;
+    users[currentUser].lastSpinDate = lastSpinDate;
+    users[currentUser].totalPaid = totalPaid;
+    users[currentUser].usedPromos = usedPromos;
+    users[currentUser].waitUntil = waitUntil;
+    saveUsers(users);
+  }
+
+  // ============ TABS ============
+  tabLogin.addEventListener('click', function () {
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    loginForm.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+  });
+  tabRegister.addEventListener('click', function () {
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    registerForm.classList.remove('hidden');
+    loginForm.classList.add('hidden');
+  });
+
+  // ============ REGISTER ============
+  $('registerBtn').addEventListener('click', function () {
+    var u = $('regUser').value.trim();
+    var p = $('regPass').value;
+    var p2 = $('regPass2').value;
+    if (u.length < 3) { alert('❌ Login kamida 3 belgi bo\'lishi kerak!'); return; }
+    if (p.length < 4) { alert('❌ Parol kamida 4 belgi bo\'lishi kerak!'); return; }
+    if (p !== p2) { alert('❌ Parollar mos emas!'); return; }
+    var users = loadUsers();
+    if (users[u]) { alert('❌ Bu login allaqachon band!'); return; }
+
+    users[u] = {
+      pass: p,
+      balance: 1000000,
+      history: [],
+      spins: 0,
+      wins: 0,
+      maxWin: 0,
+      spinCount: 0,
+      lastSpinDate: todayStr(),
+      totalPaid: 0,
+      usedPromos: {},
+      waitUntil: 0,
+      created: Date.now()
+    };
+    saveUsers(users);
+
+    alert('✅ Muvaffaqiyatli ro\'yxatdan o\'tdingiz!\n\n🎁 Boshlang\'ich bonus: 1 000 000 so\'m\n🎰 Baraban: kuniga 2 marta\n💥 Crash: cheksiz\n🎁 Promo kodlar mavjud!\n💸 Pul yechish uchun 150 000 so\'m hisob to\'ldiring.');
+
+    $('loginUser').value = u;
+    $('loginPass').value = '';
+    $('regUser').value = '';
+    $('regPass').value = '';
+    $('regPass2').value = '';
+    tabLogin.click();
+    $('loginPass').focus();
+  });
+
+  // ============ LOGIN ============
+  $('loginBtn').addEventListener('click', function () {
+    var u = $('loginUser').value.trim();
+    var p = $('loginPass').value;
+    if (!u || !p) { alert('❌ Login va parolni kiriting!'); return; }
+    var users = loadUsers();
+    if (!users[u]) { alert('❌ Bunday foydalanuvchi yo\'q!\nRo\'yxatdan o\'ting.'); return; }
+    if (users[u].pass !== p) { alert('❌ Parol xato!'); return; }
+    enterApp(u);
+  });
+
+  $('loginPass').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('loginBtn').click(); });
+  $('loginUser').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('loginPass').focus(); });
+  $('regPass2').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('registerBtn').click(); });
+
+  function enterApp(u) {
+    currentUser = u;
+    setSession(u);
+    var users = loadUsers();
+    var data = users[u] || {};
+    balance = data.balance || 0;
+    history = data.history || [];
+    spins = data.spins || 0;
+    wins = data.wins || 0;
+    maxWin = data.maxWin || 0;
+    spinCount = data.spinCount || 0;
+    lastSpinDate = data.lastSpinDate || todayStr();
+    totalPaid = data.totalPaid || 0;
+    usedPromos = data.usedPromos || {};
+    waitUntil = data.waitUntil || 0;
+
+    authPage.classList.add('hidden');
+    mainPage.classList.remove('hidden');
+
+    hideAllPanels();
+    closeMenu();
+    checkDailyReset();
+    updateUI();
+    renderHistory();
+    wheelValue.textContent = '🎲';
+    renderCrashHistory();
+    resetCrashUI();
+    checkWaitStatus();
+  }
+
+  // ============ WAIT TIMER ============
+  var waitInterval = null;
+
+  function checkWaitStatus() {
+    if (waitUntil > Date.now()) {
+      startWaitTimer();
+    } else {
+      stopWaitTimer();
+      payFormWrap.classList.remove('hidden');
+      waitWrap.classList.add('hidden');
+    }
+  }
+
+  function startWaitTimer() {
+    stopWaitTimer();
+    payFormWrap.classList.add('hidden');
+    waitWrap.classList.remove('hidden');
+    updateWaitTimer();
+    waitInterval = setInterval(updateWaitTimer, 1000);
+  }
+
+  function stopWaitTimer() {
+    if (waitInterval) { clearInterval(waitInterval); waitInterval = null; }
+  }
+
+  function updateWaitTimer() {
+    var diff = waitUntil - Date.now();
+    if (diff <= 0) {
+      stopWaitTimer();
+      payFormWrap.classList.remove('hidden');
+      waitWrap.classList.add('hidden');
+      waitUntil = 0;
+      saveUserData();
+      return;
+    }
+    var totalSec = Math.floor(diff / 1000);
+    var m = Math.floor(totalSec / 60);
+    var s = totalSec % 60;
+    waitTimerEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+
+  // ============ GAME TABS ============
+  var gameTabWheel = $('gameTabWheel');
+  var gameTabCrash = $('gameTabCrash');
+  var wheelGame = $('wheelGame');
+  var crashGame = $('crashGame');
+
+  gameTabWheel.addEventListener('click', function () {
+    gameTabWheel.classList.add('active');
+    gameTabCrash.classList.remove('active');
+    wheelGame.classList.remove('hidden');
+    crashGame.classList.add('hidden');
+  });
+  gameTabCrash.addEventListener('click', function () {
+    gameTabCrash.classList.add('active');
+    gameTabWheel.classList.remove('active');
+    crashGame.classList.remove('hidden');
+    wheelGame.classList.add('hidden');
+  });
+
+  // ============ SPIN ============
+  var spinning = false;
+  var currentRotation = 0;
+
+  spinBtn.addEventListener('click', function () {
+    if (spinning) return;
+    checkDailyReset();
+    if (spinCount >= DAILY_LIMIT) { updateSpinLimitUI(); return; }
+
+    spinning = true;
+    spinBtn.disabled = true;
+    spinBtn.style.opacity = '0.6';
+    wheelValue.textContent = '🌀';
+
+    var rand = Math.random() * 100;
+    var winAmount = 0;
+    if (rand < 5) winAmount = 100000000;
+    else if (rand < 20) winAmount = 20000000;
+    else if (rand < 45) winAmount = 5000000;
+    else if (rand < 70) winAmount = 12000000;
+    else winAmount = 300000;
+
+    var extra = 1800 + Math.floor(Math.random() * 720);
+    currentRotation += extra;
+    wheelRing.style.transform = 'rotate(' + currentRotation + 'deg)';
+
+    setTimeout(function () {
+      balance += winAmount;
+      spins++;
+      wins++;
+      spinCount++;
+      lastSpinDate = todayStr();
+      if (winAmount > maxWin) maxWin = winAmount;
+      addHistory('win', winAmount);
+      saveUserData();
+      updateUI();
+      var displayStr;
+      if (winAmount >= 1000000) displayStr = (winAmount / 1000000).toFixed(0) + ' mln';
+      else displayStr = (winAmount / 1000).toFixed(0) + 'k';
+      wheelValue.textContent = '🎉 ' + displayStr;
+      spinning = false;
+      var remaining = DAILY_LIMIT - spinCount;
+      updateSpinLimitUI();
+      if (remaining <= 0) {
+        setTimeout(function () {
+          alert('⛔ Bugungi limit tugadi!\n\n🎰 Kuniga 2 marta aylantirish mumkin.\n⏳ Ertaga yana 2 marta aylantirishingiz mumkin.');
+        }, 400);
+      }
+    }, 3600);
+  });
+
+  // ============ CRASH GAME ============
+  var crashMultiplierEl = $('crashMultiplier');
+  var crashStatusEl = $('crashStatus');
+  var crashLine = $('crashLine');
+  var crashRocket = $('crashRocket');
+  var crashBetInput = $('crashBet');
+  var crashStartBtn = $('crashStartBtn');
+  var crashCashoutBtn = $('crashCashoutBtn');
+  var crashResult = $('crashResult');
+  var crashHistoryEl = $('crashHistory');
+
+  var crashActive = false;
+  var crashMultiplier = 1.0;
+  var crashBetAmount = 0;
+  var crashInterval = null;
+  var crashTarget = 1.0;
+  var crashHistory = [];
+
+  function resetCrashUI() {
+    crashMultiplierEl.textContent = '1.00x';
+    crashMultiplierEl.classList.remove('crashed');
+    crashStatusEl.textContent = 'Stavka kiriting va boshlang';
+    crashStatusEl.className = 'crash-status wait';
+    crashLine.style.width = '0%';
+    crashRocket.style.left = '10px';
+    crashRocket.style.bottom = '10px';
+    crashStartBtn.classList.remove('hidden');
+    crashCashoutBtn.classList.add('hidden');
+    crashStartBtn.disabled = false;
+    crashStartBtn.style.opacity = '1';
+    crashStartBtn.textContent = '🚀 BOSHLASH';
+    crashBetInput.disabled = false;
+    crashResult.classList.add('hidden');
+  }
+
+  function renderCrashHistory() {
+    if (!crashHistory.length) {
+      crashHistoryEl.innerHTML = '<span style="opacity:0.4;font-size:12px;">Tarix bo\'sh</span>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < crashHistory.length; i++) {
+      var m = crashHistory[i];
+      var cls = 'low';
+      if (m >= 5) cls = 'high';
+      else if (m >= 2) cls = 'mid';
+      html += '<span class="chip ' + cls + '">' + m.toFixed(2) + 'x</span>';
+    }
+    crashHistoryEl.innerHTML = html;
+  }
+
+  function addCrashHistory(m) {
+    crashHistory.unshift(m);
+    if (crashHistory.length > 15) crashHistory.pop();
+    renderCrashHistory();
+  }
+
+  function genCrashTarget() {
+    var r = Math.random();
+    if (r < 0.15) return 1.0 + Math.random() * 0.30;
+    else if (r < 0.50) return 1.30 + Math.random() * 0.70;
+    else if (r < 0.80) return 2.00 + Math.random() * 3.00;
+    else if (r < 0.95) return 5.00 + Math.random() * 10.00;
+    else return 15.00 + Math.random() * 35.00;
+  }
+
+  var qbBtns = document.querySelectorAll('.quick-bet button');
+  for (var i = 0; i < qbBtns.length; i++) {
+    (function(btn){
+      btn.addEventListener('click', function () {
+        if (crashActive) return;
+        crashBetInput.value = btn.getAttribute('data-amt');
+      });
+    })(qbBtns[i]);
+  }
+
+  crashStartBtn.addEventListener('click', function () {
+    if (crashActive) return;
+    var bet = Number(crashBetInput.value);
+    if (!bet || bet < CRASH_MIN_BET) { toast(crashResult, '❌ Minimal stavka <b>300 000 so\'m</b>!', 'error'); return; }
+    if (bet > balance) { toast(crashResult, '❌ Balansda yetarli mablag\' yo\'q!<br>Balans: <b>' + fmt(balance) + ' so\'m</b>', 'error'); return; }
+
+    crashActive = true;
+    crashBetAmount = bet;
+    crashMultiplier = 1.0;
+    crashTarget = genCrashTarget();
+
+    balance -= bet;
+    updateUI();
+    saveUserData();
+
+    crashResult.classList.add('hidden');
+    crashStartBtn.classList.add('hidden');
+    crashCashoutBtn.classList.remove('hidden');
+    crashBetInput.disabled = true;
+    crashMultiplierEl.classList.remove('crashed');
+    crashStatusEl.textContent = '🚀 Uchmoqda... OLISH tugmasini bosing!';
+    crashStatusEl.className = 'crash-status wait';
+
+    crashMultiplierEl.textContent = '1.00x';
+    crashLine.style.width = '0%';
+    crashRocket.style.left = '10px';
+    crashRocket.style.bottom = '10px';
+
+    var startTime = Date.now();
+    crashInterval = setInterval(function () {
+      var elapsed = (Date.now() - startTime) / 1000;
+      crashMultiplier = 1.0 + Math.pow(elapsed, 1.6) * 0.35;
+      crashMultiplierEl.textContent = crashMultiplier.toFixed(2) + 'x';
+      var pct = Math.min((crashMultiplier - 1) / 9 * 100, 95);
+      crashLine.style.width = pct + '%';
+      crashRocket.style.left = pct + '%';
+      crashRocket.style.bottom = (10 + pct * 1.5) + 'px';
+      if (crashMultiplier >= crashTarget) doCrash();
+    }, 60);
+  });
+
+  crashCashoutBtn.addEventListener('click', function () {
+    if (!crashActive) return;
+    var winAmount = Math.floor(crashBetAmount * crashMultiplier);
+    clearInterval(crashInterval); crashInterval = null; crashActive = false;
+    balance += winAmount;
+    addHistory('crash-win', winAmount, crashMultiplier.toFixed(2) + 'x');
+    addCrashHistory(crashMultiplier);
+    updateUI();
+    saveUserData();
+    crashStatusEl.textContent = '✅ YUTDINGIZ: ' + crashMultiplier.toFixed(2) + 'x → +' + fmt(winAmount) + ' so\'m';
+    crashStatusEl.className = 'crash-status win';
+    toast(crashResult, '🎉 YUTUQ!<br>Multiplikator: <b>' + crashMultiplier.toFixed(2) + 'x</b><br>Yutuq: <b>+' + fmt(winAmount) + ' so\'m</b>', 'success');
+    setTimeout(resetCrashUI, 2500);
+  });
+
+  function doCrash() {
+    clearInterval(crashInterval); crashInterval = null; crashActive = false;
+    crashMultiplierEl.classList.add('crashed');
+    crashMultiplierEl.textContent = crashMultiplier.toFixed(2) + 'x';
+    crashStatusEl.textContent = '💥 CRASH! Stavka yutqazildi: -' + fmt(crashBetAmount) + ' so\'m';
+    crashStatusEl.className = 'crash-status lose';
+    addHistory('crash-lose', crashBetAmount, crashMultiplier.toFixed(2) + 'x');
+    addCrashHistory(crashMultiplier);
+    updateUI();
+    saveUserData();
+    toast(crashResult, '💥 CRASH!<br>Multiplikator: <b>' + crashMultiplier.toFixed(2) + 'x</b><br>Stavka yo\'qoldi: <b>-' + fmt(crashBetAmount) + ' so\'m</b>', 'error');
+    setTimeout(resetCrashUI, 2500);
+  }
+
+  // ============ MENU ACTIONS ============
+  $('menuCabinet').addEventListener('click', function () {
+    closeMenu();
+    hideAllPanels();
+    cabinetPanel.classList.remove('hidden');
+    updateUI();
+    renderHistory();
+  });
+
+  $('menuPromo').addEventListener('click', function () {
+    closeMenu();
+    hideAllPanels();
+    promoPanel.classList.remove('hidden');
+    promoResult.classList.add('hidden');
+    promoInput.value = '';
+  });
+
+  $('menuWithdraw').addEventListener('click', function () {
+    closeMenu();
+    hideAllPanels();
+    withdrawPanel.classList.remove('hidden');
+    updateWithdrawLockUI();
+    withdrawResult.classList.add('hidden');
+    withdrawResult2.classList.add('hidden');
+  });
+
+  $('menuPay').addEventListener('click', function () {
+    closeMenu();
+    hideAllPanels();
+    payPanel.classList.remove('hidden');
+    $('paySum').value = '';
+    $('filePreview').classList.add('hidden');
+    $('filePreview').textContent = '';
+    $('checkFile').value = '';
+    payResult.classList.add('hidden');
+    $('paySubmitBtn').disabled = false;
+    $('paySubmitBtn').style.opacity = '1';
+    $('paySubmitBtn').textContent = '✅ TO\'LADIM';
+    checkWaitStatus();
+  });
+
+  $('menuLogout').addEventListener('click', function () {
+    closeMenu();
+    if (!confirm('Chiqishni xohlaysizmi?')) return;
+    saveUserData();
+    clearSession();
+    currentUser = null;
+    balance = 0; history = []; spins = 0; wins = 0; maxWin = 0;
+    spinCount = 0; totalPaid = 0; usedPromos = {}; waitUntil = 0;
+    stopTimer();
+    stopWaitTimer();
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    crashActive = false;
+    mainPage.classList.add('hidden');
+    authPage.classList.remove('hidden');
+    hideAllPanels();
+    $('loginUser').value = '';
+    $('loginPass').value = '';
+  });
+
+  // ============ COPY CARD ============
+  $('copyCardBtn').addEventListener('click', function () {
+    var btn = this;
+    var text = CARD_NUMBER;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.classList.add('copied');
+        btn.innerHTML = '✅ Copy';
+        setTimeout(function () {
+          btn.classList.remove('copied');
+          btn.innerHTML = '📋 Copy';
+        }, 1500);
+      }).catch(function () { fallbackCopy(text, btn); });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  });
+
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    btn.classList.add('copied');
+    btn.innerHTML = '✅ Copy';
+    setTimeout(function () {
+      btn.classList.remove('copied');
+      btn.innerHTML = '📋 Copy';
+    }, 1500);
+  }
+
+  // ============ CABINET CLOSE ============
+  $('closeCabinetBtn').addEventListener('click', function () {
+    cabinetPanel.classList.add('hidden');
+  });
+
+  // ============ PROMO CLOSE ============
+  $('closePromoBtn').addEventListener('click', function () {
+    promoPanel.classList.add('hidden');
+  });
+
+  // ============ WITHDRAW ============
+  $('closeWithdrawBtn').addEventListener('click', function () {
+    withdrawPanel.classList.add('hidden');
+  });
+  $('closeWithdrawBtn2').addEventListener('click', function () {
+    withdrawPanel.classList.add('hidden');
+  });
+
+  $('gotoPayBtn').addEventListener('click', function () {
+    withdrawPanel.classList.add('hidden');
+    payPanel.classList.remove('hidden');
+    $('paySum').value = '';
+    $('filePreview').classList.add('hidden');
+    $('filePreview').textContent = '';
+    $('checkFile').value = '';
+    payResult.classList.add('hidden');
+    $('paySubmitBtn').disabled = false;
+    $('paySubmitBtn').style.opacity = '1';
+    $('paySubmitBtn').textContent = '✅ TO\'LADIM';
+    checkWaitStatus();
+  });
+
+  $('withdrawBtn').addEventListener('click', function () {
+    if (!isWithdrawUnlocked) {
+      toast(withdrawResult2, '❌ Avval 150 000 so\'m hisob to\'ldirishingiz kerak!', 'error');
+      return;
+    }
+    var name = $('wCardName').value.trim();
+    var card = $('wCardNum').value.replace(/\s/g, '');
+    var amount = Number($('wAmount').value);
+    var period = $('wPeriod').value.trim();
+    if (!name) { toast(withdrawResult2, '❌ Karta egasini kiriting!', 'error'); return; }
+    if (card.length < 16) { toast(withdrawResult2, '❌ Karta raqami 16 xona bo\'lishi kerak!', 'error'); return; }
+    if (!amount || amount <= 0) { toast(withdrawResult2, '❌ Summani kiriting!', 'error'); return; }
+    if (amount < 150000) { toast(withdrawResult2, '❌ Minimal yechish summasi <b>150 000 so\'m</b>!', 'error'); return; }
+    if (amount > balance) { toast(withdrawResult2, '❌ Balansda yetarli mablag\' yo\'q!<br>Balans: <b>' + fmt(balance) + ' so\'m</b>', 'error'); return; }
+    if (!period) { toast(withdrawResult2, '❌ Muddatni kiriting!', 'error'); return; }
+
+    balance -= amount;
+    addHistory('withdraw', amount, period);
+    updateUI();
+    saveUserData();
+    toast(withdrawResult2, '✅ So\'rov qabul qilindi!<br><b>' + fmt(amount) + ' so\'m</b> | ' + name + '<br>Karta: ' + card.slice(0,4) + ' **** **** ' + card.slice(-4) + '<br>Muddat: ' + period + '<br><br>📲 Telegram: @vrxszd', 'success');
+  });
+
+  // ============ PAY ============
+  $('closePayBtn').addEventListener('click', function () {
+    payPanel.classList.add('hidden');
+  });
+  $('closePayBtn2').addEventListener('click', function () {
+    payPanel.classList.add('hidden');
+  });
+
+  $('fileUploadBox').addEventListener('click', function () {
+    $('checkFile').click();
+  });
+
+  $('checkFile').addEventListener('change', function () {
+    var f = this.files[0];
+    if (!f) return;
+    var preview = $('filePreview');
+    preview.textContent = '📎 Yuklandi: ' + f.name + ' (' + (f.size/1024).toFixed(1) + ' KB)';
+    preview.classList.remove('hidden');
+  });
+
+  $('paySubmitBtn').addEventListener('click', function () {
+    var sum = Number($('paySum').value);
+    var file = $('checkFile').files[0];
+
+    if (!sum || sum < 150000) { toast(payResult, '❌ Minimal to\'lov <b>150 000 so\'m</b>!', 'error'); return; }
+    if (!file) { toast(payResult, '❌ Iltimos, chekni yuklang!', 'error'); return; }
+
+    totalPaid += sum;
+    addHistory('pay', sum, 'kutilmoqda');
+    updateUI();
+    saveUserData();
+
+    waitUntil = Date.now() + WAIT_MINUTES * 60 * 1000;
+    saveUserData();
+
+    toast(payResult,
+      '✅ To\'lov qabul qilindi!<br>' +
+      '<b>' + fmt(sum) + ' so\'m</b><br>' +
+      '📎 Chek: ' + file.name + '<br>' +
+      '📲 Telegram: @vrxszd ga yuborildi',
+      'success'
+    );
+
+    setTimeout(function () {
+      payResult.classList.add('hidden');
+      startWaitTimer();
+    }, 1200);
+  });
+
+  // ============ AUTO LOGIN ============
+  var saved = getSession();
+  if (saved && loadUsers()[saved]) {
+    enterApp(saved);
+  }
+
+})();
+</script>
+
+</body>
+</html>
